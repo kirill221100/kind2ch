@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>b</title>
+</head>
+<body>
+    {% for i in req%}
+        <a href="{{'https://2ch.hk/b/res/'+i['num']+'.html'}}">{{'https://2ch.hk/b/res/'+i['num']+'.html'}}</a>
+        <p>{{i['name']}} {{i['date']}} No.{{i['num']}}</p>
+        <p>{{i['comment']|safe}}</p>
+        {% for j in i['files']%}
+            <img src={{'https://2ch.hk'+j['path']}} height="{{j['tn_height']}}" width="{{j['tn_width']}}">
+        {% endfor%}
+        <hr size="4">
+    {%endfor%}
+
+</body>
+</html>

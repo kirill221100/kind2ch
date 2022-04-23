@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>b</title>
+</head>
+<body>
+    {% for i in req%}
+        <a href="{{'https://2ch.hk/b/res/'+i['posts'][0]['num']+'.html'}}">{{'https://2ch.hk/b/res/'+i['posts'][0]['num']+'.html'}}</a>
+        <p>{{i['posts'][0]['name']}} {{i['posts'][0]['date']}} No.{{i['posts'][0]['num']}}</p>
+        <p>{{i['posts'][0]['comment']|safe}}</p>
+        {% for j in i['posts'][0]['files']%}
+            <img src={{'https://2ch.hk'+j['path']}} height="{{j['tn_height']}}" width="{{j['tn_width']}}">
+        {% endfor%}
+        <hr size="4">
+    {%endfor%}
+    {% if page < 9%}
+        <a href="{{url_for('index', page=page+1)}}">next</a>
+    {%endif%}
+    {% if page > 0%}
+        <a href="{{url_for('index', page=page-1)}}">prev</a>
+    {%endif%}
+</body>
+</html>
